@@ -19,7 +19,7 @@ const Header = () => {
     <div className="container mx-auto p-4 py-0 h-[93px] flex justify-between items-center">
       <div className="flex gap-2">
         <Image height={32} width={32} src="/logoIcon.png" alt="FSW Icon" />
-        <h1 className="text-primary text-2xl">Fullstackweek</h1>
+        <h1 className="text-primary text-2xl">NextTrip</h1>
       </div>
       {status === "unauthenticated" && (
         <button
