@@ -29,8 +29,8 @@ const TripItem = ({ trip }: TripItemProps) => {
         <ReactCountryFlag countryCode={trip.countryCode} svg />
         <p className="text-xs text-grayPrimary">{trip.location}</p>
       </div>
-      <p className="font-medium text-primary">
-        <span>R${trip.pricePerDay.toString()}</span> por dia
+      <p className="font-medium text-primaryDarker ">
+        <span className="text-primary">R${trip.pricePerDay.toString()}</span> por dia
       </p>
     </div>
   );
