@@ -2,6 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
@@ -17,10 +18,10 @@ const Header = () => {
 
   return (
     <div className="container mx-auto p-4 py-0 h-[93px] flex justify-between items-center">
-      <div className="flex gap-2">
+      <Link href="/" className="flex gap-2">
         <Image height={32} width={32} src="/logoIcon.png" alt="FSW Icon" />
         <h1 className="text-primary text-2xl">NextTrip</h1>
-      </div>
+      </Link>
       {status === "unauthenticated" && (
         <button
           className="text-primary text-sm font-semibold"
