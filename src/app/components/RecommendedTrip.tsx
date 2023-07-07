@@ -1,11 +1,15 @@
 import TripItem from "@/components/TripItem";
+import { prisma } from "@/lib/prisma";
 import { Trip } from "@prisma/client";
+import { data } from "autoprefixer";
+
+async function getTrips(){
+  const trips = await prisma.trip.findMany();
+  return trips;
+}
 
 const RecommendedTrip = async () => {
-  const data = await fetch("http://localhost:3000/hello").then((res) =>
-    res.json()
-  );
-
+  const data = await getTrips()
   return (
     <div className="container mx-auto p-5">
       <div className="flex items-center">
