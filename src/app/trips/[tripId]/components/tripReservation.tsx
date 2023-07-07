@@ -1,37 +1,44 @@
 "use client";
-
 import Button from "@/components/Button";
 import DatePicker from "@/components/DatePicker";
 import Input from "@/components/Input";
-import { Trip } from "@prisma/client";
+import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
-interface TripReservation {
-  trip: Trip;
+interface TripReservationProps {
+  tripStartDate: Date;
+  tripEndDate: Date;
+  maxGuests: number;
 }
+
 interface TripReservationForm {
   guests: number;
   startDate: Date | null;
   endDate: Date | null;
 }
 
-const onSubmit = (data: any) => {
-  console.log({ data });
-};
-
-const TripReservation = ({ trip }: TripReservation) => {
+const TripReservation = ({
+  maxGuests,
+  tripStartDate,
+  tripEndDate,
+}: TripReservationProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
     watch,
-    setError,
   } = useForm<TripReservationForm>();
 
+  const onSubmit = (data: any) => {
+    console.log({ data });
+  };
+
+  const startDate = watch("startDate");
+
   return (
-    <div className="flex flex-col px-5 ">
-      <div className="flex gap-4 ">
+    <div className="flex flex-col px-5">
+      <div className="flex gap-4">
         <Controller
           name="startDate"
           rules={{
@@ -49,10 +56,10 @@ const TripReservation = ({ trip }: TripReservation) => {
               selected={field.value}
               placeholderText="Data de Início"
               className="w-full"
+              minDate={tripStartDate}
             />
           )}
         />
-
         <Controller
           name="endDate"
           rules={{
@@ -70,29 +77,28 @@ const TripReservation = ({ trip }: TripReservation) => {
               selected={field.value}
               placeholderText="Data Final"
               className="w-full"
+              maxDate={tripEndDate}
+              minDate={startDate ?? tripStartDate}
             />
           )}
         />
       </div>
-
       <Input
         {...register("guests", {
           required: {
             value: true,
-            message: "Número de hóspedes é obrigatorio",
+            message: "Número de hóspedes é obrigatório.",
           },
         })}
-        placeholder={`Número de hóspedes (max: ${trip.maxGuests})`}
+        placeholder={`Número de hóspedes (max: ${maxGuests})`}
         className="mt-4"
         error={!!errors?.guests}
         errorMessage={errors?.guests?.message}
       />
-
-      <div className="flex justify-between mt-2">
+      <div className="flex justify-between mt-3">
         <p className="font-medium text-sm text-primaryDarker">Total: </p>
-        <p className="font-medium text-sm text-primaryDarker">R$ 2500 </p>
+        <p className="font-medium text-sm text-primaryDarker">R$2500</p>
       </div>
-
       <div className="pb-10 border-b border-b-grayLighter w-full">
         <Button
           onClick={() => handleSubmit(onSubmit)()}
@@ -104,5 +110,4 @@ const TripReservation = ({ trip }: TripReservation) => {
     </div>
   );
 };
-
 export default TripReservation;
