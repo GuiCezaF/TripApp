@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Trip" ALTER COLUMN "locationDescription" SET DEFAULT 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis leo sed tellus tempor hendrerit. Quisque pretium nisl ligula, ac venenatis tellus semper eu. Nam efficitur consequat metus eget luctus. Aliquam tristique magna diam, id lacinia augue consectetur a. Vivamus cursus massa non tortor consectetur consequat. Praesent pretium risus est, a tristique odio lacinia ac. Integer bibendum porttitor arcu eu pulvinar. ';
