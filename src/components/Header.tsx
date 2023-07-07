@@ -32,7 +32,11 @@ const Header = () => {
       )}
       {status === "authenticated" && data.user && (
         <div className="flex items-center gap-3 border-grayLighter border border-solid p-2 px-3 rounded-full relative">
-          <AiOutlineMenu size={16} onClick={handlerMenuClick} className="cursor-pointer" />
+          <AiOutlineMenu
+            size={16}
+            onClick={handlerMenuClick}
+            className="cursor-pointer"
+          />
           <Image
             height={35}
             width={35}
@@ -42,7 +46,7 @@ const Header = () => {
           />
 
           {menuIsOpen && (
-            <div className="absolute top-14 left-0 w-full h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center">
+            <div className=" z-50 absolute top-14 left-0 w-full h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center">
               <button
                 className="text-primary text-sm font-semibold"
                 onClick={handleLogoutClick}
